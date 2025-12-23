@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">◆</span>
+      <span class="logo-text">CAPMINDS</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-item active">📅</a>
+      <a href="dashboard.html" class="nav-item">📋</a>
+    </nav>
+  </aside>
+
+  <div class="content">
+
+    <header class="topbar">
+      <h2>Calendar</h2>
+      <button class="primary-btn" id="openModalBtn">+ Book Appointment</button>
+    </header>
+
+    <section class="calendar-container">
+      <div class="calendar-header">
+        <button id="prevMonth">‹</button>
+        <h3 id="monthYear"></h3>
+        <button id="nextMonth">›</button>
+      </div>
+
+      <div class="calendar-days">
+        <div>SUN</div><div>MON</div><div>TUE</div>
+        <div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+      </div>
+
+      <div id="calendarGrid" class="calendar-grid"></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Schedule Appointment</h3>
+    <form id="appointmentForm">
+      <input id="patient" placeholder="Patient Name*" required />
+      <input id="doctor" placeholder="Doctor Name*" required />
+      <input id="hospital" placeholder="Hospital Name" />
+      <input id="specialty" placeholder="Specialty" />
+      <input id="date" type="date" required />
+      <input id="time" type="time" required />
+      <textarea id="reason" placeholder="Reason"></textarea>
+
+      <div class="modal-actions">
+        <button type="button" id="closeModal">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
