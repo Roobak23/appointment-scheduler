@@ -2,6 +2,7 @@
 
 A responsive Appointment Scheduling application built using **pure HTML, CSS, and JavaScript**, strictly following the given Figma design and requirements.  
 No frameworks, libraries, or backend services are used.
+Live Demo: https://roobak23.github.io/appointment-scheduler/
 ---
 
 ## 🚀 Features
@@ -56,38 +57,12 @@ No frameworks, libraries, or backend services are used.
 
 ---
 
-## 💾 Data Storage
-- All appointment data is stored using **Browser localStorage**
-- Data persists even after page refresh
-- No backend or API integration required
-
----
-
-## 📱 Responsive Design
-- Works on:
-  - Desktop
-  - Tablet
-  - Mobile
-- Sidebar adapts on smaller screens
-
----
 
 ## 🛠 Technologies Used
 - HTML5
 - CSS3 (Flexbox, Grid)
 - JavaScript (ES6)
 - Browser localStorage
-
-❌ No frameworks (React, Angular, Vue)  
-❌ No libraries (Bootstrap, jQuery, date libraries)
-
----
-
-## 🎯 Assignment Notes
-- UI closely follows the provided Figma design
-- Clean and readable code structure
-- All functional requirements implemented
-- Fully client-side application
 
 ---
 
