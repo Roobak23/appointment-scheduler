@@ -1,71 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Calendar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <title>CAPMINDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<header class="header">
+  <div class="logo">
+    <div class="logo-box">❯</div>
+    <span>CAPMINDS</span>
+  </div>
+  <button class="primary-btn" id="openModal">+ Book Appointment</button>
+</header>
+
 <div class="layout">
 
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="logo">
-      <span class="logo-icon">◆</span>
-      <span class="logo-text">CAPMINDS</span>
+    <button class="collapse">«</button>
+
+    <div class="nav-item active" data-page="calendar">
+      📅 <span>Calendar</span>
     </div>
-    <nav class="nav">
-      <a href="index.html" class="nav-item active">📅</a>
-      <a href="dashboard.html" class="nav-item">📋</a>
-    </nav>
+    <div class="nav-item" data-page="dashboard">
+      ▦ <span>Dashboard</span>
+    </div>
   </aside>
 
-  <div class="content">
+  <!-- MAIN -->
+  <main class="main">
 
-    <header class="topbar">
-      <h2>Calendar</h2>
-      <button class="primary-btn" id="openModalBtn">+ Book Appointment</button>
-    </header>
+    <!-- CALENDAR PAGE -->
+    <section id="calendarPage">
 
-    <section class="calendar-container">
+      <!-- CALENDAR HEADER (FIXED) -->
       <div class="calendar-header">
-        <button id="prevMonth">‹</button>
-        <h3 id="monthYear"></h3>
-        <button id="nextMonth">›</button>
+
+        <div class="calendar-controls">
+          <button id="prev">‹</button>
+
+          <div class="month-box">
+            <span id="monthLabel"></span>
+          </div>
+
+          <button id="next">›</button>
+
+          <button id="today" class="today-btn">Today</button>
+        </div>
+
+        <div class="doctor-name">James Marry</div>
       </div>
 
-      <div class="calendar-days">
-        <div>SUN</div><div>MON</div><div>TUE</div>
-        <div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+      <!-- CALENDAR -->
+      <div class="calendar-box">
+        <div id="calendar"></div>
       </div>
 
-      <div id="calendarGrid" class="calendar-grid"></div>
     </section>
 
-  </div>
+    <!-- DASHBOARD -->
+    <section id="dashboardPage" class="hidden">
+      <h3>Appointment Details</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Hospital</th>
+            <th>Specialty</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </section>
+
+  </main>
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3>Schedule Appointment</h3>
-    <form id="appointmentForm">
-      <input id="patient" placeholder="Patient Name*" required />
-      <input id="doctor" placeholder="Doctor Name*" required />
-      <input id="hospital" placeholder="Hospital Name" />
-      <input id="specialty" placeholder="Specialty" />
-      <input id="date" type="date" required />
-      <input id="time" type="time" required />
-      <textarea id="reason" placeholder="Reason"></textarea>
+<!-- MODAL -->
+<div class="modal hidden" id="modal">
+  <form class="modal-card" id="form">
 
-      <div class="modal-actions">
-        <button type="button" id="closeModal">Cancel</button>
-        <button type="submit">Save</button>
+    <div class="modal-header">
+      <h3>Schedule Appointment</h3>
+      <button type="button" id="closeModal">✕</button>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input id="patient" placeholder="Patient Name" required>
       </div>
-    </form>
-  </div>
+
+      <div class="input-group">
+        <span class="icon">👨‍⚕️</span>
+        <input id="doctorInput" placeholder="Doctor Name" required>
+      </div>
+
+      <div class="input-group">
+        <span class="icon">📍</span>
+        <input id="hospital" placeholder="Hospital Name" required>
+      </div>
+
+      <div class="input-group">
+        <span class="icon">🩺</span>
+        <input id="specialty" placeholder="Specialty" required>
+      </div>
+
+      <div class="input-group">
+        <span class="icon">📅</span>
+        <input id="dateInput" type="date" required>
+      </div>
+
+      <div class="input-group">
+        <span class="icon">⏰</span>
+        <input id="timeInput" type="time" required>
+      </div>
+
+    </div>
+
+    <textarea id="reason" placeholder="Reason"></textarea>
+
+    <div class="modal-actions">
+      <button type="button" class="outline" id="cancelModal">Cancel</button>
+      <button type="submit" class="primary-btn">Save</button>
+    </div>
+
+  </form>
 </div>
 
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
