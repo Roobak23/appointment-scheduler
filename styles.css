@@ -252,3 +252,16 @@ th, td {
   padding: 6px 12px;
   border-radius: 4px;
 }
+/* RIGHT CONTROLS */
+.right-controls {
+  justify-content: flex-end;
+}
+
+.month-dropdown {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 4px 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+}

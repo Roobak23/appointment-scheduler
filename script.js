@@ -1,5 +1,6 @@
 const calendarEl = document.getElementById("calendar");
 const monthLabel = document.getElementById("monthLabel");
+const monthSelect = document.getElementById("monthSelect");
 const modal = document.getElementById("modal");
 const form = document.getElementById("form");
 const tableBody = document.getElementById("tableBody");
@@ -28,6 +29,7 @@ collapseBtn.onclick = () => {
   sidebar.classList.toggle("collapsed");
   collapseBtn.textContent = sidebar.classList.contains("collapsed") ? "»" : "«";
 };
+
 
 /* CALENDAR */
 function renderCalendar() {
@@ -110,6 +112,14 @@ form.onsubmit = e => {
 prev.onclick = () => { current.setMonth(current.getMonth() - 1); renderCalendar(); };
 next.onclick = () => { current.setMonth(current.getMonth() + 1); renderCalendar(); };
 today.onclick = () => { current = new Date(); renderCalendar(); };
+monthSelect.onchange = () => {
+  if (monthSelect.value !== "") {
+    current.setMonth(parseInt(monthSelect.value));
+    renderCalendar();
+    monthSelect.value = ""; // reset to Month ▼
+  }
+};
+
 
 renderCalendar();
 renderTable();
