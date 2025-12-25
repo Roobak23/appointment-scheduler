@@ -66,9 +66,10 @@ function renderCalendar() {
 }
 
 /* TABLE */
-function renderTable() {
+function renderTable(filtered = appointments) {
   tableBody.innerHTML = "";
-  appointments.forEach(a => {
+
+  filtered.forEach((a, index) => {
     tableBody.innerHTML += `
       <tr>
         <td>${a.patient}</td>
@@ -77,10 +78,15 @@ function renderTable() {
         <td>${a.specialty}</td>
         <td>${a.date}</td>
         <td>${a.time}</td>
-        <td>${a.reason}</td>
-      </tr>`;
+        <td>
+          <span class="action-btn action-edit" onclick="editAppointment(${index})">✏️</span>
+          <span class="action-btn action-delete" onclick="deleteAppointment(${index})">🗑️</span>
+        </td>
+      </tr>
+    `;
   });
 }
+
 
 /* MODAL */
 openModal.onclick = () => modal.classList.remove("hidden");
@@ -123,3 +129,48 @@ monthSelect.onchange = () => {
 
 renderCalendar();
 renderTable();
+// FILTER
+filterBtn.onclick = () => {
+  const p = patientSearch.value.toLowerCase();
+  const d = doctorSearch.value.toLowerCase();
+  const from = fromDate.value;
+  const to = toDate.value;
+
+  const filtered = appointments.filter(a => {
+    return (
+      (!p || a.patient.toLowerCase().includes(p)) &&
+      (!d || a.doctor.toLowerCase().includes(d)) &&
+      (!from || a.date >= from) &&
+      (!to || a.date <= to)
+    );
+  });
+
+  renderTable(filtered);
+};
+
+// DELETE
+function deleteAppointment(index) {
+  if (confirm("Delete this appointment?")) {
+    appointments.splice(index, 1);
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+    renderTable();
+    renderCalendar();
+  }
+}
+
+// EDIT (basic – opens modal)
+function editAppointment(index) {
+  const a = appointments[index];
+
+  patient.value = a.patient;
+  doctorInput.value = a.doctor;
+  hospital.value = a.hospital;
+  specialty.value = a.specialty;
+  dateInput.value = a.date;
+  timeInput.value = a.time;
+  reason.value = a.reason;
+
+  appointments.splice(index, 1);
+  localStorage.setItem("appointments", JSON.stringify(appointments));
+  modal.classList.remove("hidden");
+}

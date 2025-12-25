@@ -265,3 +265,47 @@ th, td {
   cursor: pointer;
   font-size: 13px;
 }
+/* DASHBOARD */
+.dash-title {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.dashboard-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.dashboard-filters input {
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.dashboard-card h4 {
+  margin-bottom: 10px;
+}
+
+/* ACTION ICONS */
+.action-btn {
+  cursor: pointer;
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.action-edit {
+  color: #2563eb;
+}
+
+.action-delete {
+  color: #dc2626;
+}

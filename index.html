@@ -80,23 +80,43 @@
     </section>
 
     <!-- DASHBOARD -->
-    <section id="dashboardPage" class="hidden">
-      <h3>Appointment Details</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Patient</th>
-            <th>Doctor</th>
-            <th>Hospital</th>
-            <th>Specialty</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Reason</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
-    </section>
+  <section id="dashboardPage" class="hidden">
+
+  <h2 class="dash-title">Practice Dashboard</h2>
+
+  <!-- FILTER BAR -->
+  <div class="dashboard-filters">
+    <input type="text" id="patientSearch" placeholder="Patient Search">
+    <input type="text" id="doctorSearch" placeholder="Doctor Search">
+
+    <input type="date" id="fromDate">
+    <input type="date" id="toDate">
+
+    <button id="filterBtn" class="primary-btn">Update</button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="dashboard-card">
+    <h4>Appointment Details</h4>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Doctor</th>
+          <th>Hospital</th>
+          <th>Specialty</th>
+          <th>Select Date</th>
+          <th>Select Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+</section>
+
 
   </main>
 </div>
