@@ -62,11 +62,14 @@ body {
 }
 
 .collapse {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background: none;
   border: none;
   font-size: 18px;
-  margin-bottom: 20px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .nav-item {
@@ -308,4 +311,33 @@ th, td {
 
 .action-delete {
   color: #dc2626;
+}
+/* Sidebar must anchor the arrow */
+.sidebar {
+  position: relative;
+}
+
+/* ===== COLLAPSED STATE ===== */
+.sidebar.collapsed {
+  padding-top: 40px; /* space for arrow */
+}
+
+/* Center arrow when collapsed */
+.sidebar.collapsed .collapse {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* Center icons vertically */
+.sidebar.collapsed .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+}
+
+/* Hide text */
+.sidebar.collapsed .nav-item span {
+  display: none;
 }
