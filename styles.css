@@ -9,7 +9,6 @@ body {
   background: #f5f6f8;
 }
 
-/* HEADER */
 .header {
   height: 56px;
   background: #f8fafc;
@@ -42,13 +41,11 @@ body {
   cursor: pointer;
 }
 
-/* LAYOUT */
 .layout {
   display: flex;
   height: calc(100vh - 56px);
 }
 
-/* SIDEBAR */
 .sidebar {
   width: 220px;
   background: #f8fafc;
@@ -89,14 +86,12 @@ body {
   font-weight: 600;
 }
 
-/* MAIN */
 .main {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
 }
 
-/* CALENDAR HEADER */
 .calendar-header {
   background: white;
   border-radius: 8px 8px 0 0;
@@ -137,7 +132,6 @@ body {
   font-size: 14px;
 }
 
-/* CALENDAR */
 .calendar-box {
   background: white;
   border-radius: 0 0 8px 8px;
@@ -173,7 +167,6 @@ body {
   margin-top: 6px;
 }
 
-/* TABLE */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -185,7 +178,6 @@ th, td {
   padding: 8px;
 }
 
-/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
@@ -212,7 +204,6 @@ th, td {
   margin-bottom: 12px;
 }
 
-/* FORM */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -255,7 +246,6 @@ th, td {
   padding: 6px 12px;
   border-radius: 4px;
 }
-/* RIGHT CONTROLS */
 .right-controls {
   justify-content: flex-end;
 }
@@ -268,7 +258,6 @@ th, td {
   cursor: pointer;
   font-size: 13px;
 }
-/* DASHBOARD */
 .dash-title {
   font-size: 22px;
   margin-bottom: 16px;
@@ -298,7 +287,6 @@ th, td {
   margin-bottom: 10px;
 }
 
-/* ACTION ICONS */
 .action-btn {
   cursor: pointer;
   margin-right: 8px;
@@ -312,24 +300,20 @@ th, td {
 .action-delete {
   color: #dc2626;
 }
-/* Sidebar must anchor the arrow */
 .sidebar {
   position: relative;
 }
 
-/* ===== COLLAPSED STATE ===== */
 .sidebar.collapsed {
-  padding-top: 40px; /* space for arrow */
+  padding-top: 40px; 
 }
 
-/* Center arrow when collapsed */
 .sidebar.collapsed .collapse {
   left: 50%;
   right: auto;
   transform: translateX(-50%);
 }
 
-/* Center icons vertically */
 .sidebar.collapsed .nav-item {
   display: flex;
   justify-content: center;
@@ -337,7 +321,42 @@ th, td {
   padding: 16px 0;
 }
 
-/* Hide text */
 .sidebar.collapsed .nav-item span {
   display: none;
 }
+.event {
+  background: #7bcf86;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-top: 6px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #0f172a;
+}
+
+.event-text {
+  line-height: 1.4;
+}
+
+.event-status {
+  font-weight: 600;
+}
+
+.event-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.event-actions span {
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.event-actions span:hover {
+  background: rgba(0,0,0,0.15);
+}
+

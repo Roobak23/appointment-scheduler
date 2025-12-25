@@ -10,7 +10,6 @@ const dashboardPage = document.getElementById("dashboardPage");
 let current = new Date();
 let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
 
-/* PAGE SWITCH */
 document.querySelectorAll(".nav-item").forEach(item => {
   item.onclick = () => {
     document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
@@ -21,7 +20,6 @@ document.querySelectorAll(".nav-item").forEach(item => {
   };
 });
 
-/* SIDEBAR */
 const collapseBtn = document.querySelector(".collapse");
 const sidebar = document.querySelector(".sidebar");
 
@@ -31,7 +29,6 @@ collapseBtn.onclick = () => {
 };
 
 
-/* CALENDAR */
 function renderCalendar() {
   calendarEl.innerHTML = "";
   monthLabel.textContent = current.toLocaleString("default", {
@@ -57,15 +54,41 @@ function renderCalendar() {
 
     const dateStr = `${current.getFullYear()}-${String(current.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 
-    appointments.filter(a => a.date === dateStr).forEach(a => {
-      cell.innerHTML += `<div class="event">${a.patient} ${a.time}</div>`;
-    });
+    appointments
+
+  .map((a, index) => ({ ...a, index }))
+  .filter(a => a.date === dateStr)
+  .forEach(a => {
+    const statusClass =
+      a.status === "Arrived" ? "status-arrived" :
+      a.status === "Cancelled" ? "status-cancelled" :
+      "status-pending";
+
+    cell.innerHTML += `
+      <div class="event">
+        <div class="event-text">
+          👤 ${a.patient}
+          <span class="event-status ${statusClass}">
+            (${a.status})
+          </span>
+          ${a.time}
+        </div>
+
+        <div class="event-actions">
+          <span onclick="setStatus(${a.index}, 'Arrived')">✔</span>
+          <span onclick="setStatus(${a.index}, 'Cancelled')">✖</span>
+          <span onclick="editAppointment(${a.index})">✏️</span>
+          <span onclick="deleteAppointment(${a.index})">🗑️</span>
+        </div>
+      </div>
+    `;
+  });
+
 
     calendarEl.appendChild(cell);
   }
 }
 
-/* TABLE */
 function renderTable(filtered = appointments) {
   tableBody.innerHTML = "";
 
@@ -88,23 +111,23 @@ function renderTable(filtered = appointments) {
 }
 
 
-/* MODAL */
 openModal.onclick = () => modal.classList.remove("hidden");
 closeModal.onclick = cancelModal.onclick = () => modal.classList.add("hidden");
 
-/* SAVE */
 form.onsubmit = e => {
   e.preventDefault();
 
   appointments.push({
-    patient: patient.value,
-    doctor: doctorInput.value,
-    hospital: hospital.value,
-    specialty: specialty.value,
-    date: dateInput.value,
-    time: timeInput.value,
-    reason: reason.value
-  });
+  patient: patient.value,
+  doctor: doctorInput.value,
+  hospital: hospital.value,
+  specialty: specialty.value,
+  date: dateInput.value,
+  time: timeInput.value,
+  reason: reason.value,
+  status: "Pending"      
+});
+
 
   localStorage.setItem("appointments", JSON.stringify(appointments));
   modal.classList.add("hidden");
@@ -114,7 +137,6 @@ form.onsubmit = e => {
   renderTable();
 };
 
-/* NAV */
 prev.onclick = () => { current.setMonth(current.getMonth() - 1); renderCalendar(); };
 next.onclick = () => { current.setMonth(current.getMonth() + 1); renderCalendar(); };
 today.onclick = () => { current = new Date(); renderCalendar(); };
@@ -122,14 +144,13 @@ monthSelect.onchange = () => {
   if (monthSelect.value !== "") {
     current.setMonth(parseInt(monthSelect.value));
     renderCalendar();
-    monthSelect.value = ""; // reset to Month ▼
+    monthSelect.value = ""; 
   }
 };
 
 
 renderCalendar();
 renderTable();
-// FILTER
 filterBtn.onclick = () => {
   const p = patientSearch.value.toLowerCase();
   const d = doctorSearch.value.toLowerCase();
@@ -148,7 +169,6 @@ filterBtn.onclick = () => {
   renderTable(filtered);
 };
 
-// DELETE
 function deleteAppointment(index) {
   if (confirm("Delete this appointment?")) {
     appointments.splice(index, 1);
@@ -158,7 +178,6 @@ function deleteAppointment(index) {
   }
 }
 
-// EDIT (basic – opens modal)
 function editAppointment(index) {
   const a = appointments[index];
 
@@ -173,4 +192,14 @@ function editAppointment(index) {
   appointments.splice(index, 1);
   localStorage.setItem("appointments", JSON.stringify(appointments));
   modal.classList.remove("hidden");
+}
+function openFromCalendar(date) {
+  modal.classList.remove("hidden");
+  dateInput.value = date;
+}
+function setStatus(index, status) {
+  appointments[index].status = status;
+  localStorage.setItem("appointments", JSON.stringify(appointments));
+  renderCalendar();
+  renderTable();
 }
