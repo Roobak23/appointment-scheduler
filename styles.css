@@ -97,11 +97,14 @@ body {
   border-radius: 8px 8px 0 0;
   padding: 12px;
   border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .calendar-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
@@ -268,6 +271,10 @@ th, td {
   gap: 12px;
   margin-bottom: 16px;
   flex-wrap: wrap;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
 }
 
 .dashboard-filters input {
@@ -281,6 +288,7 @@ th, td {
   background: white;
   border-radius: 8px;
   padding: 12px;
+  border: 1px solid #e5e7eb;
 }
 
 .dashboard-card h4 {
@@ -358,5 +366,61 @@ th, td {
 
 .event-actions span:hover {
   background: rgba(0,0,0,0.15);
+}
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .main {
+    padding-bottom: 70px; /* space for bottom nav */
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-card {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 800px;
+  }
+}
+/* MOBILE BOTTOM NAV */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #6b7280;
+    cursor: pointer;
+  }
+
+  .mobile-nav-item.active {
+    color: #2563eb;
+    font-weight: 600;
+  }
 }
 

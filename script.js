@@ -10,15 +10,33 @@ const dashboardPage = document.getElementById("dashboardPage");
 let current = new Date();
 let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
 
-document.querySelectorAll(".nav-item").forEach(item => {
-  item.onclick = () => {
-    document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
+function switchPage(page) {
+  calendarPage.classList.toggle("hidden", page !== "calendar");
+  dashboardPage.classList.toggle("hidden", page !== "dashboard");
 
-    calendarPage.classList.toggle("hidden", item.dataset.page !== "calendar");
-    dashboardPage.classList.toggle("hidden", item.dataset.page !== "dashboard");
-  };
+  document.querySelectorAll(".nav-item").forEach(i => {
+    i.classList.toggle("active", i.dataset.page === page);
+  });
+
+  document.querySelectorAll(".mobile-nav-item").forEach(i => {
+    i.classList.toggle("active", i.dataset.page === page);
+  });
+}
+
+
+document.querySelectorAll(".nav-item").forEach(item => {
+  item.addEventListener("click", () => {
+    switchPage(item.dataset.page);
+  });
 });
+
+document.querySelectorAll(".mobile-nav-item").forEach(item => {
+  item.addEventListener("click", () => {
+    switchPage(item.dataset.page);
+  });
+});
+
+
 
 const collapseBtn = document.querySelector(".collapse");
 const sidebar = document.querySelector(".sidebar");
@@ -203,3 +221,4 @@ function setStatus(index, status) {
   renderCalendar();
   renderTable();
 }
+switchPage("calendar");
